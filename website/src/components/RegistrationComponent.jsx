@@ -1,7 +1,9 @@
 'use client';
 
-import { startTransition, useActionState } from "react";
+import {startTransition, useActionState, useEffect, useState} from "react";
 import pb from "@/lib/pocketbaseClient";
+import { useRouter } from 'next/navigation'
+
 
 export default function RegistrationComponent() {
     const [state, formAction, isPending] = useActionState(registerUser, null);
@@ -21,7 +23,7 @@ export default function RegistrationComponent() {
                 <input type="text" id="username" name="username" placeholder="Username" />
                 <input type="password" id="password" name="password" placeholder="Password" />
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
-                <button type="submit" disabled={isPending}>
+                <button type="submit" disabled={isPending || state?.success}>
                     Register
                 </button>
 
@@ -44,6 +46,7 @@ async function registerUser(prevState, formData) {
             "passwordConfirm": confirmPassword,
             "money": 1000.0
         });
+        return { success: true };
     } catch (error) {
         console.error('Error registering user:', error);
         return {

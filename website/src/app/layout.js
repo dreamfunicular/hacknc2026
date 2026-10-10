@@ -26,9 +26,9 @@ export default function RootLayout({ children }) {
           <div className="bubble bubble-two" />
           <div className="bubble bubble-three" />
           <div className="bubble bubble-four" />
-          <Image className="fish fish-yellow" src="/fish1.png" alt="" width={64} height={64} />
-          <Image className="fish fish-coral" src="/fish2.png" alt="" width={64} height={64} />
-          <Image className="fish fish-blue" src="/fish3.png" alt="" width={64} height={64} />
+          <Image className="fish fish-yellow" src="/fish1.png" alt="" width={64} height={64} loading={"eager"}/>
+          <Image className="fish fish-coral" src="/fish2.png" alt="" width={64} height={64} loading={"eager"}/>
+          <Image className="fish fish-blue" src="/fish3.png" alt="" width={64} height={64} loading={"eager"}/>
           <div className="seafloor" />
         </div>
         <main className="site-content">{children}</main>

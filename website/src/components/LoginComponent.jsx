@@ -1,10 +1,19 @@
 'use client';
 
-import { startTransition, useActionState } from "react";
+import { startTransition, useActionState, useEffect } from "react";
 import pb from "@/lib/pocketbaseClient";
+import { useRouter } from "next/navigation";
 
 export default function LoginComponent() {
     const [state, formAction, isPending] = useActionState(loginUser, null);
+
+    const router = useRouter();
+
+    useEffect(() => {
+        if (state?.success) {
+            router.push("/dashboard");
+        }
+    }, [router, state]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -36,6 +45,7 @@ async function loginUser(prevState, formData) {
 
     try {
         await pb.collection('users').authWithPassword(username, password);
+        return { success: true };
     } catch (error) {
         console.error('Error registering user:', error);
         return {
