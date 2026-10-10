@@ -1,8 +1,9 @@
 import PocketBase from 'pocketbase';
+import {cache} from "react";
 
 // you can place this helper in a separate file so that it can be reused
 
-export default async function initPocketBase(req, res) {
+export const initPocketBase = cache(async () => {
     const pb = new PocketBase(process.env.POCKETBASE_URL);
 
     // load the store data from the request cookie string
@@ -22,4 +23,4 @@ export default async function initPocketBase(req, res) {
     }
 
     return pb
-}
+})
