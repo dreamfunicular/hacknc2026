@@ -99,50 +99,21 @@ body {
 
 .fish {
   position: absolute;
-  width: 4.5rem;
-  height: 2.3rem;
-  border-radius: 60% 45% 45% 60%;
-  filter: drop-shadow(0 0.5rem 0.3rem rgba(0, 57, 90, 0.18));
+  width: 8rem;
+  height: auto;
   animation: swim 24s linear infinite;
-}
-
-.fish::before {
-  content: "";
-  position: absolute;
-  top: 0.65rem;
-  right: 0.6rem;
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: #073b59;
-  box-shadow: 0 0 0 0.18rem rgba(255, 255, 255, 0.6);
-}
-
-.fish::after {
-  content: "";
-  position: absolute;
-  top: 0.15rem;
-  left: -1.4rem;
-  border-top: 1rem solid transparent;
-  border-bottom: 1rem solid transparent;
-  border-right: 1.65rem solid currentColor;
-  transform: rotate(-8deg);
 }
 
 .fish-yellow {
   top: 24%;
   left: -7rem;
-  color: #f6bd32;
-  background: #ffd94f;
   animation-delay: -2s;
 }
 
 .fish-coral {
   top: 54%;
   left: -8rem;
-  color: #f07067;
-  background: #ff9676;
-  transform: scale(0.7);
+  transform: scale(0.82);
   animation-duration: 29s;
   animation-delay: -15s;
 }
@@ -150,9 +121,7 @@ body {
 .fish-blue {
   top: 73%;
   left: -7rem;
-  color: #65c7df;
-  background: #8ce4eb;
-  transform: scale(0.55);
+  transform: scale(0.68);
   animation-duration: 20s;
   animation-delay: -9s;
 }

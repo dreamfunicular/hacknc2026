@@ -1,4 +1,5 @@
 import { Ubuntu } from 'next/font/google';
+import Image from 'next/image';
 import "./globals.css";
 
 const ubuntu = Ubuntu({
@@ -25,9 +26,9 @@ export default function RootLayout({ children }) {
           <div className="bubble bubble-two" />
           <div className="bubble bubble-three" />
           <div className="bubble bubble-four" />
-          <div className="fish fish-yellow" />
-          <div className="fish fish-coral" />
-          <div className="fish fish-blue" />
+          <Image className="fish fish-yellow" src="/fish1.png" alt="" width={64} height={64} />
+          <Image className="fish fish-coral" src="/fish2.png" alt="" width={64} height={64} />
+          <Image className="fish fish-blue" src="/fish3.png" alt="" width={64} height={64} />
           <div className="seafloor" />
         </div>
         <main className="site-content">{children}</main>
