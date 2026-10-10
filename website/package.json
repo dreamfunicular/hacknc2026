@@ -19,7 +19,8 @@
     "@tailwindcss/turbopack": "^4",
     "eslint": "^10",
     "eslint-config-next": "16.4.0",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15"
   },
   "packageManager": "pnpm@12.9.0"
 }
