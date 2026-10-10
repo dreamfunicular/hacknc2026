@@ -1,4 +1,4 @@
-import initPocketBase from "@/lib/initPocketBase";
+import {initPocketBase} from "@/lib/initPocketBase";
 import CompanyList from "@/components/company_list";
 import CompanyListSkele from "@/components/company_list_skele";
 import {Suspense} from "react";
@@ -11,9 +11,7 @@ export default function DashboardPage() {
         <div className="w-screen h-screen">
             <div className="flex flex-row h-2/3">
                 <div className="w-1/2">
-                    <Suspense fallback={<UserInfoSkele/>}>
-                        <UserInfo/>
-                    </Suspense>
+                    <UserInfo/>
                 </div>
             </div>
             <Suspense fallback={<CompanyListSkele/>}>

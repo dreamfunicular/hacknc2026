@@ -5,7 +5,6 @@ export default async function CompanyList() {
     const companies = await pb.collection('companies').getFullList({
         fields: 'id,name,ticker',
     });
-    console.log(companies);
     const investList = companies.map(investment =>
         <li key={investment.id} className="flex flex-row gap-x-5">
             <div>{investment.name}</div>
