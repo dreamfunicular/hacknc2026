@@ -1,0 +1,35 @@
+web/node_modules
+web/.idea/**/workspace.xml
+web/.idea/**/tasks.xml
+web/.idea/**/usage.statistics.xml
+web/.idea/**/dictionaries
+web/.idea/**/shelf
+
+web/node_modules
+web/.pnp
+web/.pnp.*
+
+# testing
+web/coverage
+
+# next.js
+web/.next/
+web/out/
+
+# production
+web/build
+
+# misc
+web/.DS_Store
+web/*.pem
+
+# debug
+web/npm-debug.log*
+web/.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+web/.env*
+
+# typescript
+web/*.tsbuildinfo
+web/next-env.d.tsl
