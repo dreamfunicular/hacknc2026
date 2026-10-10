@@ -17,7 +17,7 @@ export default function RegistrationComponent() {
     }
 
     return (
-        <div className="text-center">
+        <div className="text-center bordered_div">
             <h1 className={"text-3xl font-bold mb-2"}>Register</h1>
             <form onSubmit={handleSubmit}>
                 <input type="text" id="username" name="username" placeholder="Username" />

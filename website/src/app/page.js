@@ -4,8 +4,11 @@ import LoginComponent from "@/components/LoginComponent";
 export default function Home() {
   return (
     <>
-        <RegistrationComponent />
-        <LoginComponent />
+        <div className={"flex flex-row items-center justify-center gap-15"}>
+            <RegistrationComponent />
+            <LoginComponent />
+        </div>
+
     </>
   );
 }

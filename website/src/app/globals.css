@@ -41,12 +41,12 @@ body {
   padding: clamp(2rem, 8vw, 7rem) clamp(1rem, 5vw, 4rem);
 }
 
-.site-content:has(> div + div) {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-content: center;
-  gap: clamp(1rem, 4vw, 2rem);
-}
+/*.site-content:has(> div + div) {*/
+/*  display: grid;*/
+/*  grid-template-columns: repeat(2, minmax(0, 1fr));*/
+/*  align-content: center;*/
+/*  gap: clamp(1rem, 4vw, 2rem);*/
+/*}*/
 
 .ocean-scene {
   position: fixed;
@@ -131,13 +131,14 @@ h1, h2, h3 {
   text-shadow: 0 1px 0 #fff;
 }
 
-form, .site-content > div {
+/*form, .site-content > div */
+.bordered_div {
   padding: clamp(1.25rem, 3vw, 2rem);
   border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 1.5rem;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(221, 250, 255, 0.7));
   box-shadow: 0 1rem 2.5rem rgba(0, 75, 120, 0.2), inset 0 1px rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(4px);
 }
 
 form {
