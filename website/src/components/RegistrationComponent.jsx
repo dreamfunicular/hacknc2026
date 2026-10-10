@@ -42,6 +42,7 @@ async function registerUser(prevState, formData) {
             "username": username,
             "password": password,
             "passwordConfirm": confirmPassword,
+            "money": 0
         });
     } catch (error) {
         console.error('Error registering user:', error);
