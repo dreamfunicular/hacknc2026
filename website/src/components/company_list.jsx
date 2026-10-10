@@ -1,4 +1,4 @@
-import initPocketBase from "@/lib/initPocketBase";
+import {initPocketBase} from "@/lib/initPocketBase";
 
 export default async function CompanyList() {
     const pb = await initPocketBase();
