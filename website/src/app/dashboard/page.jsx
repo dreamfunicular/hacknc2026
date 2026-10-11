@@ -6,9 +6,9 @@ import LatestNews from "@/components/latest_news";
 export default function DashboardPage() {
 
     return (
-        <div>
+        <div className="m-3">
             <EventScroller/>
-            <div className="bordered_div mt-3 mb-3">
+            <div className="bordered_div mt-3">
                 <UserInfo/>
                 <LatestNews/>
                 <CompanyList/>
