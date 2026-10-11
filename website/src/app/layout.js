@@ -9,7 +9,7 @@ const ubuntu = Ubuntu({
 });
 
 export const metadata = {
-  title: "Blue Current",
+  title: "LifeVest",
   description: "A bright underwater investing dashboard.",
 };
 

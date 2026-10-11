@@ -35,10 +35,10 @@ body {
 .site-content {
   position: relative;
   z-index: 2;
-  width: min(100%, 72rem);
+  /*width: min(100%, 72rem);*/
   min-height: 100vh;
   margin: 0 auto;
-  padding: clamp(2rem, 8vw, 7rem) clamp(1rem, 5vw, 4rem);
+  /*padding: clamp(2rem, 8vw, 7rem) clamp(1rem, 5vw, 4rem);*/
 }
 
 /*.site-content:has(> div + div) {*/
