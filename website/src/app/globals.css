@@ -194,6 +194,19 @@ button:active:not(:disabled) {
   }
 }
 
+@theme {
+  --animate-scroll-right: scroll-right 25s linear infinite;
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-210%);
+    }
+    100% {
+      transform: translateX(100cqw);
+    }
+  }
+}
+
 @keyframes swim {
   0% { transform: translateX(0) translateY(0) scale(1); }
   25% { transform: translateX(35vw) translateY(-2rem) scale(1.03); }

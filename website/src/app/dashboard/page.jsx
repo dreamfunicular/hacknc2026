@@ -1,16 +1,20 @@
 import {CompanyList} from "@/components/company_list";
 import UserInfo from "@/components/user_info";
+import EventScroller from "@/components/event_scroller";
 
 export default function DashboardPage() {
 
     return (
-        <div className="bordered_div mt-3">
-            <div className="flex flex-row h-2/3">
-                <div className="w-1/2">
-                    <UserInfo/>
+        <div>
+            <EventScroller/>
+            <div className="bordered_div mt-3">
+                <div className="flex flex-row h-2/3">
+                    <div className="w-1/2">
+                        <UserInfo/>
+                    </div>
                 </div>
+                <CompanyList/>
             </div>
-            <CompanyList/>
         </div>
     )
 }
