@@ -1,35 +1,74 @@
-web/node_modules
-web/.idea/**/workspace.xml
-web/.idea/**/tasks.xml
-web/.idea/**/usage.statistics.xml
-web/.idea/**/dictionaries
-web/.idea/**/shelf
+website/node_modules
+website/.idea/**/workspace.xml
+website/.idea/**/tasks.xml
+website/.idea/**/usage.statistics.xml
+website/.idea/**/dictionaries
+website/.idea/**/shelf
 
-web/node_modules
-web/.pnp
-web/.pnp.*
+website/node_modules
+website/.pnp
+website/.pnp.*
 
 # testing
-web/coverage
+website/coverage
 
 # next.js
-web/.next/
-web/out/
+website/.next/
+website/out/
 
 # production
-web/build
+website/build
 
 # misc
-web/.DS_Store
-web/*.pem
+website/.DS_Store
+website/*.pem
 
 # debug
-web/npm-debug.log*
-web/.pnpm-debug.log*
+website/npm-debug.log*
+website/.pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-web/.env*
+website/.env*
 
 # typescript
-web/*.tsbuildinfo
-web/next-env.d.tsl
+website/*.tsbuildinfo
+website/next-env.d.tsl
+
+
+simulation/node_modules
+simulation/.idea/**/workspace.xml
+simulation/.idea/**/tasks.xml
+simulation/.idea/**/usage.statistics.xml
+simulation/.idea/**/dictionaries
+simulation/.idea/**/shelf
+
+simulation/node_modules
+simulation/.pnp
+simulation/.pnp.*
+
+# testing
+simulation/coverage
+
+# next.js
+simulation/.next/
+simulation/out/
+
+# production
+simulation/build
+
+# misc
+simulation/.DS_Store
+simulation/*.pem
+
+# debug
+simulation/npm-debug.log*
+simulation/.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+simulation/.env*
+
+# typescript
+simulation/*.tsbuildinfo
+simulation/next-env.d.tsl
+
+
