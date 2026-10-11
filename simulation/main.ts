@@ -20,7 +20,7 @@ async function mutateDB() {
         let percentChange = Math.random() / 5.0 - .1
         company.currentPrice = company.currentPrice * (1 + percentChange)
          
-        console.log(String(company.name) + " (" + company.ticker + ")\nCurrent Price: " + (percentChange > 0 ? "+" : "") + company.currentPrice.toFixed(2) + " (" + (percentChange * 100).toFixed(2)  + "%)" + "\n")
+        console.log(String(company.name) + " (" + company.ticker + ")\nCurrent Price: " + company.currentPrice.toFixed(2) + " (" + (percentChange > 0 ? "+" : "") + (percentChange * 100).toFixed(2)  + "%)" + "\n")
 
         await pb.collection('companies').update(company.id, company);
     }
