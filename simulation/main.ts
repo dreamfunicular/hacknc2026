@@ -60,12 +60,25 @@ function getNextSimulationDate(companies: company[]): string {
 const EVENT_COUNT = 3;
 const EVENT_SCALE = 0.01;
 
-// Random matrix of current events: one row per event, one column per personality field.
+const EVENT_STEP = 0.2;
+
+let lastEventMatrix: number[][] | undefined;
+
+// Event matrix: one row per event, one column per personality field. The first call is random;
+// later calls nudge each value of the previous matrix by a random amount in [-EVENT_STEP, EVENT_STEP]
+// (in units of EVENT_SCALE), clamped to [-EVENT_SCALE, EVENT_SCALE] so it cannot drift unbounded.
 function generateEventMatrix(): number[][] {
-    return Array.from({ length: EVENT_COUNT }, () => [
-        (Math.random() * 2 - 1) * EVENT_SCALE,
-        (Math.random() * 2 - 1) * EVENT_SCALE,
-    ]);
+    const next = lastEventMatrix
+        ? lastEventMatrix.map((row) => row.map((value) => {
+            const nudged = value + (Math.random() * 2 - 1) * EVENT_STEP * EVENT_SCALE;
+            return Math.max(-EVENT_SCALE, Math.min(EVENT_SCALE, nudged));
+        }))
+        : Array.from({ length: EVENT_COUNT }, () => [
+            (Math.random() * 2 - 1) * EVENT_SCALE,
+            (Math.random() * 2 - 1) * EVENT_SCALE,
+        ]);
+    lastEventMatrix = next;
+    return next;
 }
 
 // Multiply the event matrix by the company's [instability, crescendo] vector and sum the product.
