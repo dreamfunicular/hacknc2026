@@ -207,6 +207,15 @@ button:active:not(:disabled) {
   }
 }
 
+.ticker-text {
+  animation: ticker-scroll 25s linear infinite;
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translate(100cqw, -50%); }
+  100% { transform: translate(-100%, -50%); }
+}
+
 @keyframes swim {
   0% { transform: translateX(0) translateY(0) scale(1); }
   25% { transform: translateX(35vw) translateY(-2rem) scale(1.03); }
