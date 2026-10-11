@@ -53,9 +53,9 @@ export default function EventScroller() {
 
         return () => {
             active = false;
-            pb.collection("users").unsubscribe();
+            pb.collection("users").unsubscribe(user.id);
         }
-    })
+    }, [user])
 
     return (
         <div className="w-full overflow-hidden bordered_div my-2">

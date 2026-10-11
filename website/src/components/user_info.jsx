@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import pb from "@/lib/pocketbaseClient";
 
 let authSnapshot = pb.authStore.record;
@@ -28,6 +28,7 @@ export default function UserInfo() {
     );
     const [money, setMoney] = useState(0);
     const [assets, setAssets] = useState(0);
+    const moneyRef = useRef(0);
 
     useEffect(() => {
         if (!user) {
@@ -40,6 +41,7 @@ export default function UserInfo() {
             .getOne(user.id, { requestKey: null })
             .then((record) => {
                 if (active) {
+                    moneyRef.current = record.money;
                     setMoney(record.money);
                 }
             });
@@ -47,6 +49,7 @@ export default function UserInfo() {
 
         pb.collection("users").subscribe(user.id, (event) => {
             if (active) {
+                moneyRef.current = event.record.money;
                 setMoney(event.record.money);
             }
         });
@@ -79,7 +82,7 @@ export default function UserInfo() {
                     const total = investments.reduce(
                         (sum, investment) =>
                             sum + investment.shares * investment.expand.company.currentPrice,
-                        money
+                        moneyRef.current
                     );
                     setAssets(total);
                 });
@@ -92,7 +95,7 @@ export default function UserInfo() {
             active = false;
             pb.collection("companies").unsubscribe("*");
         };
-    }, [user, money]);
+    }, [user]);
 
     const USDollar = Intl.NumberFormat("en-US", {
         style: "currency",

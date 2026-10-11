@@ -40,6 +40,37 @@ export function CompanyList() {
 
         let active = true;
 
+        const handleCompanyChange = (event) => {
+            if (!active) {
+                return;
+            }
+            console.log("detected change")
+
+            setCompanies((currentCompanies) => {
+                if (event.action === "delete") {
+                    return currentCompanies.filter((company) => company.id !== event.record.id);
+                }
+
+                const companyIndex = currentCompanies.findIndex(
+                    (company) => company.id === event.record.id
+                );
+
+                if (companyIndex === -1) {
+                    return [...currentCompanies, event.record];
+                }
+
+                const nextCompanies = [...currentCompanies];
+                nextCompanies[companyIndex] = event.record;
+                return nextCompanies;
+            });
+        };
+
+        pb.collection("companies").subscribe("*", handleCompanyChange).catch(() => {
+            if (active) {
+                setTradeMessage("sub failed");
+            }
+        });
+
         async function loadData() {
             const [companyRecords, investmentRecords] = await Promise.all([
                 pb.collection("companies").getFullList({
@@ -74,6 +105,7 @@ export function CompanyList() {
 
         return () => {
             active = false;
+            pb.collection("companies").unsubscribe("*");
         };
     }, [user]);
 
