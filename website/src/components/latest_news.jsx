@@ -18,8 +18,8 @@ export default function LatestNews(){
             setNews(result[0].body)
         })
         pb.collection('news').subscribe("*", (res) => {
-            if (active && res.action === "create") {
-                setNews(res.data.body)
+            if (active) {
+                setNews(res.record.body)
             }
         })
         return () => {
