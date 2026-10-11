@@ -173,10 +173,12 @@ async function mutateDB() {
         const company = companies[i]
         const previousPrice = company.currentPrice;
         const aiUpdate = pendingAiUpdates.get(company.id);
-        const percentChange = aiUpdate ? undefined : getPercentChange(company, events);
-        const currentPrice = aiUpdate
-            ? aiUpdate.price
-            : Number((previousPrice * (1 + percentChange!)).toFixed(2));
+        const matrixChange = getPercentChange(company, events);
+        // When Gemini has recommended a price, average its implied change with the matrix change.
+        const percentChange = aiUpdate
+            ? (((aiUpdate.price - previousPrice) / previousPrice) + matrixChange) / 2
+            : matrixChange;
+        const currentPrice = Number((previousPrice * (1 + percentChange)).toFixed(2));
         const priceHistory = Array.isArray(company.priceHistory)
             ? [...company.priceHistory]
             : [];
