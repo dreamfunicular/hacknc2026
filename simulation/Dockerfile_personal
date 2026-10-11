@@ -9,6 +9,7 @@ COPY pnpm-workspace.yaml ./
 RUN pnpm install --prod --no-frozen-lockfile
 
 COPY personal_events.js ./
+COPY personal_events.json ./
 
 USER node
 
