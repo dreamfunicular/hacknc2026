@@ -12,6 +12,8 @@ type company ={
     description: string,
     currentPrice: number,
     trend: trend,
+    instability: number,
+    crescendo: number,
     priceHistory?: priceHistoryEntry[],
 }
 
@@ -55,21 +57,23 @@ function getNextSimulationDate(companies: company[]): string {
     return formatSimulationDate(nextDate);
 }
 
-function getPercentChange(trend: trend): number {
-    switch (trend) {
-        case 'up_fast':
-            return Math.random() * 0.1;
-        case 'up_slow':
-            return Math.random() * 0.05;
-        case 'stagnant':
-            return Math.random() * 0.02 - 0.01;
-        case 'down_slow':
-            return Math.random() * -0.05;
-        case 'down_fast':
-            return Math.random() * -0.1;
-        case 'penny':
-            return Math.random() - 0.5;
-    }
+const EVENT_COUNT = 3;
+const EVENT_SCALE = 0.01;
+
+// Random matrix of current events: one row per event, one column per personality field.
+function generateEventMatrix(): number[][] {
+    return Array.from({ length: EVENT_COUNT }, () => [
+        (Math.random() * 2 - 1) * EVENT_SCALE,
+        (Math.random() * 2 - 1) * EVENT_SCALE,
+    ]);
+}
+
+// Multiply the event matrix by the company's [instability, crescendo] vector and sum the product.
+function getPercentChange(company: company, events: number[][]): number {
+    const personality = [company.instability ?? 0, company.crescendo ?? 0];
+    return events
+        .map((row) => row.reduce((sum, value, j) => sum + value * personality[j], 0))
+        .reduce((sum, value) => sum + value, 0);
 }
 
 async function generateAiUpdate(company: company): Promise<aiUpdate> {
@@ -163,15 +167,18 @@ async function mutateDB() {
         requestKey: null,
     });
     const date = getNextSimulationDate(companies);
+    const events = generateEventMatrix();
 
     for (let i = 0; i < companies.length; i++) {
         const company = companies[i]
         const previousPrice = company.currentPrice;
         const aiUpdate = pendingAiUpdates.get(company.id);
-        const percentChange = aiUpdate ? undefined : getPercentChange(company.trend);
-        const currentPrice = aiUpdate
-            ? aiUpdate.price
-            : Number((previousPrice * (1 + percentChange!)).toFixed(2));
+        const matrixChange = getPercentChange(company, events);
+        // When Gemini has recommended a price, average its implied change with the matrix change.
+        const percentChange = aiUpdate
+            ? (((aiUpdate.price - previousPrice) / previousPrice) + matrixChange) / 2
+            : matrixChange;
+        const currentPrice = Number((previousPrice * (1 + percentChange)).toFixed(2));
         const priceHistory = Array.isArray(company.priceHistory)
             ? [...company.priceHistory]
             : [];
