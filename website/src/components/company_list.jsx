@@ -171,7 +171,7 @@ export function CompanyList() {
                 </p>
             )}
             <div className="max-h-[70vh] overflow-y-auto overscroll-contain pr-1 [scrollbar-color:rgba(53,160,186,0.55)_transparent] [scrollbar-width:thin]">
-                <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
                     {user?.id === loadedUserId && companies.map((company) => {
                         const ownedShares = holdings[company.id] ?? 0;
 
