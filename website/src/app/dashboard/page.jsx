@@ -10,7 +10,7 @@ export default function DashboardPage() {
             <EventScroller/>
             <div className="bordered_div mt-3">
                 <div className="flex flex-row h-2/3">
-                    <div className="w-1/2">
+                    <div className="w-full">
                         <UserInfo/>
                     </div>
                     <div className="w-1/2">
