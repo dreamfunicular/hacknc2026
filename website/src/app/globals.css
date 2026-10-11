@@ -35,6 +35,8 @@ body {
 .site-content {
   position: relative;
   z-index: 2;
+  width: 100%;
+  min-width: 0;
   /*width: min(100%, 72rem);*/
   min-height: 100vh;
   margin: 0 auto;
