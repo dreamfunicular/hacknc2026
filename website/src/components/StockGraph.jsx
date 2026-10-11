@@ -6,9 +6,9 @@ import { useEffect, useMemo, useRef } from "react";
 
 
 // ex:
-// [{ "date": "2026-10-10T12:00:00Z", "value": 42.5 },
-//   { "date": "2026-10-11T14:30:00Z", "value": 108 },
-//   { "date": "2026-10-12T09:15:00Z", "value": 89.2 }]
+// [{ "date": "2026-10-10T12:00:00Z", "price": 42.5 },
+//   { "date": "2026-10-11T14:30:00Z", "price": 108 },
+//   { "date": "2026-10-12T09:15:00Z", "price": 89.2 }]
 export default function StockGraph({ pricehistory }) {
     const chartContainerRef = useRef(null);
     const ph = useMemo(
