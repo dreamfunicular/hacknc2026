@@ -1,10 +1,9 @@
 import PocketBase from 'pocketbase';
 import evs from "./personal_events.json" with {type: 'json'}
-process.loadEnvFile("./.env")
 
 const pb = new PocketBase(process.env.POCKETBASE_URL);
 
-await pb.collection('_superusers').authWithPassword(process.env.POCKETBASE_USER, process.env.POCKETBASE_PASS)
+await pb.collection('_superusers').authWithPassword(process.env.SU_USER, process.env.SU_PASSWORD)
 
 
 async function mutateDB() {
@@ -26,4 +25,4 @@ async function mutateDB() {
 
 // In a real project, this code would live in a separate executable. For this, cursedly integrating stuff into instrumentation is "okay."
 
-setInterval(mutateDB, Number(process.env.TIMEOUT))
+setInterval(mutateDB, Number(process.env.PERSONAL_TIMEOUT))
