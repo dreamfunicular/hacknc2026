@@ -2,6 +2,7 @@
 
 import {useEffect, useState, useSyncExternalStore} from "react";
 import pb from "@/lib/pocketbaseClient";
+import StockGraph from "@/components/StockGraph";
 
 let authSnapshot = pb.authStore.record;
 
@@ -42,7 +43,7 @@ export function CompanyList() {
         async function loadData() {
             const [companyRecords, investmentRecords] = await Promise.all([
                 pb.collection("companies").getFullList({
-                    fields: "id,name,ticker,currentPrice",
+                    fields: "id,name,ticker,currentPrice, priceHistory",
                     requestKey: null,
                 }),
                 pb.collection("investments").getFullList({
@@ -202,7 +203,9 @@ export function CompanyList() {
                                     </span>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-2 border-t border-white/80 pt-3">
+                                <StockGraph pricehistory={company.priceHistory} ticker={company.ticker} />
+
+                                <div className="grid grid-cols-2 gap-2 pt-3">
                                     <button
                                         className="!rounded-lg !border !border-white/90 !bg-gradient-to-b !from-white/90 !to-cyan-100/90 !px-3 !py-2 !text-sm !font-semibold !text-sky-900 !shadow-[inset_0_1px_0_white,0_2px_3px_rgba(0,92,132,0.12)]"
                                         type="button"

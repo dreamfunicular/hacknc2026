@@ -1,6 +1,6 @@
 'use client';
 
-import bb, { line } from 'billboard.js';
+import bb, { area } from 'billboard.js';
 import 'billboard.js/dist/billboard.css';
 import { useEffect, useMemo } from "react";
 
@@ -37,7 +37,7 @@ export default function UserGraph(moneyhistory) {
                     x,
                     data
                 ],
-                type: line(),
+                type: area(),
                 colors: {
                     Price: lineColor
                 },

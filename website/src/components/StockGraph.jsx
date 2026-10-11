@@ -1,22 +1,29 @@
 'use client';
 
-import bb, { line } from 'billboard.js';
+import bb, { area } from 'billboard.js';
 import 'billboard.js/dist/billboard.css';
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 
 // ex:
 // [{ "date": "2026-10-10T12:00:00Z", "value": 42.5 },
 //   { "date": "2026-10-11T14:30:00Z", "value": 108 },
 //   { "date": "2026-10-12T09:15:00Z", "value": 89.2 }]
-export default function StockGraph(pricehistory) {
+export default function StockGraph({ pricehistory }) {
+    const chartContainerRef = useRef(null);
+    const ph = useMemo(
+        () => Array.isArray(pricehistory) ? pricehistory : [],
+        [pricehistory]
+    )
+
+
     const x = useMemo(
-        () => ['x', ...pricehistory.pricehistory.map(item => item.date)],
-        [pricehistory.pricehistory]
+        () => ['x', ...ph.map(item => item.date)],
+        [ph]
     )
     const data = useMemo(
-        () => ['Price', ...pricehistory.pricehistory.map(item => item.price)],
-        [pricehistory.pricehistory]
+        () => ['Price', ...ph.map(item => item.price)],
+        [ph]
     )
 
     const lastPrice = data.at(-1)
@@ -26,10 +33,15 @@ export default function StockGraph(pricehistory) {
         : '#22c55e'
 
     useEffect(() => {
-        bb.generate({
+        if (!chartContainerRef.current) {
+            return undefined;
+        }
+
+        const chart = bb.generate({
+            bindto: chartContainerRef.current,
             size: {
                 height: 100,
-                width: 200
+                // width: 200
             },
             data: {
                 x: 'x',
@@ -37,7 +49,7 @@ export default function StockGraph(pricehistory) {
                     x,
                     data
                 ],
-                type: line(),
+                type: area(),
                 colors: {
                     Price: lineColor
                 },
@@ -63,7 +75,10 @@ export default function StockGraph(pricehistory) {
                     show: false
                 }
             }
-        })
+        });
+
+        return () => chart.destroy();
     }, [lineColor, x, data]);
-    return <div id="chart" />;
+
+    return <div ref={chartContainerRef} />;
 }
