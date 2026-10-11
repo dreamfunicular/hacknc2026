@@ -1,7 +1,7 @@
 import PocketBase from 'pocketbase';
 import evs from "./personal_events.json" with {type: 'json'}
 
-const pb = new PocketBase('https://pocketbase2026.vikramk.dev');
+const pb = new PocketBase(process.env.POCKETBASE_URL);
 
 
 async function mutateDB() {
@@ -19,4 +19,4 @@ async function mutateDB() {
 }
 
 // In a real project, this code would live in a separate executable. For this, cursedly integrating stuff into instrumentation is "okay."
-setInterval(mutateDB, 15000)
+setInterval(mutateDB, Number(process.env.TIMEOUT))
