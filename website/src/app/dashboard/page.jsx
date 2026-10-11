@@ -1,8 +1,4 @@
-import {initPocketBase} from "@/lib/initPocketBase";
-import CompanyList from "@/components/company_list";
-import CompanyListSkele from "@/components/company_list_skele";
-import {Suspense} from "react";
-import UserInfoSkele from "@/components/user_info_skele";
+import {CompanyList} from "@/components/company_list";
 import UserInfo from "@/components/user_info";
 
 export default function DashboardPage() {
@@ -14,9 +10,7 @@ export default function DashboardPage() {
                     <UserInfo/>
                 </div>
             </div>
-            <Suspense fallback={<CompanyListSkele/>}>
-                <CompanyList/>
-            </Suspense>
+            <CompanyList/>
         </div>
     )
 }
