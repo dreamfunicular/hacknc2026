@@ -9,14 +9,8 @@ export default function DashboardPage() {
         <div>
             <EventScroller/>
             <div className="bordered_div mt-3">
-                <div className="flex flex-row h-2/3">
-                    <div className="w-full">
-                        <UserInfo/>
-                    </div>
-                    <div className="w-1/2">
-                        <LatestNews/>
-                    </div>
-                </div>
+                <UserInfo/>
+                <LatestNews/>
                 <CompanyList/>
             </div>
         </div>
