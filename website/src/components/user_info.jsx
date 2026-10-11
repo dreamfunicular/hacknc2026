@@ -44,6 +44,7 @@ export default function UserInfo() {
                 }
             });
 
+
         pb.collection("users").subscribe(user.id, (event) => {
             if (active) {
                 setMoney(event.record.money);

@@ -185,7 +185,7 @@ export function CompanyList() {
                                         {company.name}
                                     </h2>
                                     <span className="shrink-0 rounded-full border border-white/90 bg-white/65 px-2.5 py-1 text-xs font-bold tracking-wide text-cyan-900 shadow-[inset_0_1px_0_white]">
-                                        {company.ticker}
+                                        ${company.ticker}
                                     </span>
                                 </div>
 
