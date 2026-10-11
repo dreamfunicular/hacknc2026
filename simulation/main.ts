@@ -81,7 +81,7 @@ Company name: ${company.name}
 Company description: ${company.description}
 Current price: ${company.currentPrice}
 
-The price must be positive and rounded to two decimals. The trend and news must reflect the event.`,
+The price must be positive and rounded to two decimals. The trend and news must reflect the event. Do not create news for the event based on any real world parllels. For example: If the company given was Theranos, you should not create news about the company being a fraud, as that is a real world event. Instead you could create news about the company releasing a new product that is a huge success, or the company being acquired by another company. The news should be fictional and not based on any real world events. Make it whimsical.`,
         config: {
             responseMimeType: 'application/json',
             responseSchema: {
