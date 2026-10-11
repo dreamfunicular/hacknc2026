@@ -52,9 +52,10 @@ export default function EventScroller() {
             setLastChange(doc.lastEventChange);
         })
 
-        pb.collection("users").subscribe(user.id, (doc) => {
-            setLastEvent(doc.lastEventText);
-            setLastChange(doc.lastEventChange)
+        pb.collection("users").subscribe(user.id, (event) => {
+            if (!active) return;
+            setLastEvent(event.record.lastEventText);
+            setLastChange(event.record.lastEventChange);
         })
 
         return () => {
